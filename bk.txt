@@ -1,0 +1,18 @@
+<div class=" white-text lmsg wow fadeIn ix">
+            <h1 class="mb-4">
+              <strong>Bring Your <br> 
+                      IDEAS to reality.</strong>
+            </h1>
+
+            <p>
+              <strong>Welcome to the best platform for financial Aid.</strong>
+            </p>
+
+            <form class="form-inline md-form form-sm mt-0">
+                  <i class="fas fa-search active" aria-hidden="true"></i>
+                  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search" aria-label="Search">
+                </form>
+             
+            
+                       
+          </div>

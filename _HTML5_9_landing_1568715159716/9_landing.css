@@ -1,0 +1,241 @@
+/*
+	@name 9_landing
+*/
+/* Only edit this if you know what you are doing! */
+body { margin: 0px; padding: 0px; font-family:"Arial"; /*overflow-x:hidden;*/ }
+
+/* Only edit this if you know what you are doing! */
+img { position: absolute; display: block; margin: 0px; border: none; padding: 0px; }
+
+/* Only edit this if you know what you are doing! */
+div { position: absolute; }
+
+#content-container { display: table; position: relative; width: 1549px; height: 2000px; overflow: hidden;  margin-left: auto; margin-right: auto;  }
+
+#_bg___9_landing {
+	top: 0px;
+	left: 0px;
+	width: 1549px;
+	height: 2000px;
+	background:rgba(255,255,255,255);
+}
+
+
+#path_201 {
+	top: 698.47796630859px;
+	left: 0.009765625px;
+	width: 1555.990234375px;
+	height: 1347.5219726562px;
+}
+
+
+#video {
+	top: 0px;
+	left: -2.748291015625px;
+	width: 1554.0002441406px;
+	height: 698px;
+}
+
+#hero_header {
+	top: 133px;
+	left: 193px;
+	width: 530px;
+	height: 303px;
+}
+
+#rectangle_396 {
+	opacity:0.30000001192093;
+	top: 0px;
+	left: 0px;
+	width: 530px;
+	height: 303px;
+	background:#;
+	background: -webkit-linear-gradient(90deg , rgba(0,0,0,255) 0%, rgba(83,44,11,255) 100%);
+	background: -o-linear-gradient(90deg , rgba(0,0,0,255) 0%, rgba(83,44,11,255) 100%);
+	background: -moz-linear-gradient(90deg , rgba(0,0,0,255) 0%, rgba(83,44,11,255) 100%);
+	background: -ms-linear-gradient(90deg , rgba(0,0,0,255) 0%, rgba(83,44,11,255) 100%);
+	background: linear-gradient(90deg , rgba(0,0,0,255) 0%, rgba(83,44,11,255) 100%);
+}
+
+
+#welcome_to_the_best_platform_for_financial_aid_ {
+	top: 148px;
+	left: 50px;
+	width: 310.12475585938px;
+	height: 68px;
+	overflow: hidden;
+	font-family: Lucida Sans;
+	font-size: 20px;
+	text-align: left;
+	color:#f8f2de;
+}
+
+
+#bring_your__ideas_to_reality_ {
+	top: 17px;
+	left: 48px;
+	width: 289px;
+	height: 95px;
+	font-family: Montserrat;
+	font-size: 27px;
+	text-align: left;
+	color:#d4cba7;
+}
+
+#search_bar {
+	top: 224px;
+	left: 57px;
+	width: 336px;
+	height: 33.5px;
+}
+
+#search {
+	top: 8px;
+	left: 0px;
+	width: 16.6640625px;
+	height: 16.700561523438px;
+}
+
+
+#rectangle_395 {
+	top: 33px;
+	left: 0px;
+	width: 334px;
+	height: -1px;
+	border: 1px solid #707070;
+	background:rgba(255,255,255,255);
+}
+
+
+#line_1 {
+	top: 0px;
+	left: 26px;
+	width: 1px;
+	height: 29px;
+}
+
+
+#__fund_and_idea_ {
+	opacity:0.21999999880791;
+	top: 7px;
+	left: 46px;
+	width: 111px;
+	height: 21px;
+	font-family: Montserrat;
+	font-size: 14px;
+	text-align: left;
+	color:#f8f2de;
+}
+
+#nav_bar {
+	top: 15.230770111084px;
+	left: 71.24072265625px;
+	width: 1400px;
+	height: 81px;
+}
+
+#rectangle_394 {
+	opacity:0;
+	top: 0px;
+	left: 0px;
+	width: 1398px;
+	height: 79px;
+	border: 1px solid #707070;
+	background:rgba(255,255,255,255);
+}
+
+
+#start_a_campaign {
+	top: 13px;
+	left: 587px;
+	width: 184px;
+	height: 28px;
+	font-family: Montserrat;
+	font-size: 20px;
+	text-align: left;
+	color:#f8f2de;
+}
+
+
+#bl {
+	top: 13px;
+	left: 809px;
+	width: 53px;
+	height: 28px;
+	font-family: Montserrat;
+	font-size: 20px;
+	text-align: left;
+	color:#f8f2de;
+}
+
+
+#discover {
+	top: 6px;
+	left: 433px;
+	width: 116px;
+	height: 34px;
+	font-family: Montserrat;
+	font-size: 24px;
+	text-align: left;
+	color:#d4cba7;
+}
+
+
+#signup___login {
+	top: 18px;
+	left: 1172px;
+	width: 158px;
+	height: 28px;
+	font-family: Montserrat;
+	font-size: 20px;
+	text-align: left;
+	color:#f8f2de;
+}
+
+#user {
+	top: 35.283103942871px;
+	left: 1409.62109375px;
+	width: 24.83837890625px;
+	height: 25.433795928955px;
+}
+
+#path_198 {
+	top: 24px;
+	left: 2px;
+	width: 0px;
+	height: 0px;
+}
+
+#group_1 {
+	top: 0px;
+	left: 0px;
+	width: 24.83837890625px;
+	height: 25.433795928955px;
+}
+
+#path_199 {
+	top: 0px;
+	left: 5px;
+	width: 14.88818359375px;
+	height: 14.888071060181px;
+}
+
+
+#path_200 {
+	top: 18px;
+	left: 0px;
+	width: 24.83837890625px;
+	height: 7.1338729858398px;
+}
+
+
+#line_2 {
+	top: 59.5px;
+	left: 653.208984375px;
+	width: 191px;
+	height: 2px;
+}
+
+
+
+/* Add your custom CSS here */
