@@ -79,10 +79,11 @@ margin-left: 200px !important;
 
 
 #wrap {
-  margin: 50px 100px;
+  margin: 0px 0px 35px 300px !important;
+  padding:0px 0px 0px 0px !important;
   display: inline-block;
-  position: relative;
-  height: 40px;
+  position: inherit;
+  height: inherit;
 
   padding: 0;
   position: relative;
@@ -133,6 +134,9 @@ margin-left: 200px !important;
   cursor: pointer;
   opacity: 0.4;
   cursor: pointer;
+  background: none;
+  outline: none;
+  background-image: image();
   transition: opacity .4s ease;
 }
 
@@ -142,4 +146,18 @@ margin-left: 200px !important;
 
 #wrap input[type="submit"]:hover {
     opacity: 0.8;
+  }
+  .display-6 {
+    font-size: 1rem !important;
+    font-weight: 300 !important;
+    line-height: .5 !important;
+  }
+  .myjumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef !important;
+    border-radius: 0.3rem;
+  }
+  .mymx{
+    margin-bottom:20px !important;
   }
