@@ -1,3 +1,4 @@
+
 /* @media (min-width: 800px) and (max-width: 850px) {
     .navbar:not(.top-nav-collapse) {
         background: #1C2331!important;
@@ -143,3 +144,8 @@ margin-left: 200px !important;
 #wrap input[type="submit"]:hover {
     opacity: 0.8;
   }
+
+.ntabsize{
+    
+    background-color: azure !important;
+}
