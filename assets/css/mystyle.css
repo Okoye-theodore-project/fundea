@@ -163,10 +163,19 @@ margin-left: 200px !important;
   .mymx{
     margin-bottom:20px !important;
   }
-=======
+
 
 .ntabsize{
     
     background-color: azure !important;
 }
->>>>>>> loginpage
+
+.profilemargin{
+
+  margin: 150px auto 0px auto;
+  max-width: 1080px
+  ;
+}
+
+
+
