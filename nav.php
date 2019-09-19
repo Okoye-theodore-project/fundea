@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
 <html lang="en">
 
@@ -94,4 +92,3 @@
 <script type="text/javascript" src="/assets/js/myscripts.js"></script>
 
 </html>
->>>>>>> loginpage
