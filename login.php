@@ -18,7 +18,11 @@
 
 <body>
     <div class="container">
+<<<<<<< HEAD
         <div class="row">
+=======
+        <div class="row mt-5">
+>>>>>>> session
             <div class="col-md-6 offset-md-3">
                 <!-- Material form login -->
                 <div class="card">
@@ -31,17 +35,29 @@
                     <div class="card-body px-lg-5 pt-0">
 
                         <!-- Form -->
+<<<<<<< HEAD
                         <form class="text-center" style="color: #757575;" action="" method="post">
 
                             <!-- Email -->
                             <div class="md-form">
                                 <input type="email" id="" class="form-control" name="email"> 
+=======
+                        <form class="text-center" style="color: #757575;" action="" method="post" enctype="multipart/form-data">
+
+                            <!-- Email -->
+                            <div class="md-form">
+                                <input type="email" id="" class="form-control" name="email" id="email"> 
+>>>>>>> session
                                 <label for="">E-mail</label>
                             </div>
 
                             <!-- Password -->
                             <div class="md-form">
+<<<<<<< HEAD
                                 <input type="password" id="" class="form-control" name="password">
+=======
+                                <input type="password" id="" class="form-control" name="password" id="password">
+>>>>>>> session
                                 <label for="">Password</label>
                             </div>
 
@@ -63,7 +79,11 @@
 
                             <!-- Sign in button -->
                             <button class="btn btn-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+<<<<<<< HEAD
                                 style="border-radius:20px" type="submit">Sign in</button>
+=======
+                                style="border-radius:20px" type="submit" id="btn-submit">Sign in</button>
+>>>>>>> session
 
                             <!-- Register -->
                             <p>Not a member?
@@ -85,6 +105,7 @@
                                 <i class="fab fa-github"></i>
                             </a>
 
+<<<<<<< HEAD
 <?php require "server.php";
 //  session_start();
 
@@ -120,6 +141,46 @@
    }
  }
 ?>                           
+=======
+                           
+<?php
+require "server.php";
+// session_start();
+
+if(isset($_REQUEST['email'])) {
+
+  $email = $_REQUEST['email'];
+  $password = $_REQUEST['password'];
+
+  $email = mysqli_real_escape_string($db,$email);
+
+  $password = mysqli_real_escape_string($db,$password);
+
+  $sql = "SELECT * FROM users where EMAIL = '$email' and PASSWORD = '".md5($password)."'";
+
+  $result = mysqli_query($db , $sql);
+
+  $row = mysqli_fetch_array($result);
+
+  $count = mysqli_num_rows($result);
+
+  if ($count == 1) {
+
+    $_SESSION['email'] = $email;
+
+    echo "LOG IN SUCCESSFUL!";
+    header("Location: index.php");
+    
+  }
+  else{
+    echo  "<br>Invalid login details";
+  }
+}
+    
+
+?>
+
+>>>>>>> session
 
                         </form>
                         <!-- Form -->

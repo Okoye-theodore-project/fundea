@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<?php require'nav.php';?>
+>>>>>>> session
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +22,11 @@
 
 <body>
     <div class="container">
+<<<<<<< HEAD
         <div class="row">
+=======
+        <div class="row mt-5">
+>>>>>>> session
             <div class="col-md-6 offset-md-3">
                 <!-- Material form login -->
                 <!-- Material form register -->
@@ -32,22 +40,35 @@
                     <div class="card-body px-lg-5 pt-0">
 
                         <!-- Form -->
+<<<<<<< HEAD
                         <form class="text-center" style="color: #757575;"
                             action="" method="post"
                             enctype="multipart/form-data">
+=======
+                        <form class="text-center" style="color: #757575;" action="" method="post"
+                            enctype="multipart/form-data" id="registration">
+>>>>>>> session
 
                             <div class="form-row">
                                 <div class="col">
                                     <!-- First name -->
                                     <div class="md-form">
+<<<<<<< HEAD
                                         <input type="text" name="firstname" class="form-control">
+=======
+                                        <input type="text" name="firstname" id="firstname" class="form-control">
+>>>>>>> session
                                         <label for="">First name</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <!-- Last name -->
                                     <div class="md-form">
+<<<<<<< HEAD
                                         <input type="text" name="lastname" class="form-control">
+=======
+                                        <input type="text" name="lastname" id="lastname" class="form-control">
+>>>>>>> session
                                         <label for="">Last name</label>
                                     </div>
                                 </div>
@@ -55,29 +76,49 @@
 
                             <!-- E-mail -->
                             <div class="md-form mt-0">
+<<<<<<< HEAD
                                 <input type="email" name="email" class="form-control">
+=======
+                                <input type="email" name="email" id="email" class="form-control">
+>>>>>>> session
                                 <label for="">E-mail</label>
                             </div>
 
                             <!-- Password -->
                             <div class="md-form">
+<<<<<<< HEAD
                                 <input type="password" name="password1" class="form-control" aria-describedby="">
                                 <label for="">Password</label>
                                 <small id="" class="form-text text-muted mb-4">
                                     At least 8 characters including 1 digit
                                 </small>
+=======
+                                <input type="password" name="password1" id="password1" class="form-control"
+                                    aria-describedby="">
+                                <label for="">Password</label>
+                                <div class="message_box" style="margin:5px 0px;">
+>>>>>>> session
                             </div>
 
                             <!-- Confirm Password -->
                             <div class="md-form">
+<<<<<<< HEAD
                                 <input type="password" name="password2" class="form-control" aria-describedby="">
+=======
+                                <input type="password" name="password2" id="password2" class="form-control"
+                                    aria-describedby="">
+>>>>>>> session
                                 <label for="">Confirm Password</label>
                                 <small id="" class="form-text text-muted mb-4"></small>
                             </div>
 
                             <!-- Phone number -->
                             <div class="md-form">
+<<<<<<< HEAD
                                 <input type="text" name="phone" class="form-control">
+=======
+                                <input type="text" name="phone" id="phone" class="form-control">
+>>>>>>> session
                                 <label for="materialRegisterFormPhone">Phone number</label>
                                 <small class="form-text text-muted mb-4">
                                     Optional - for two step authentication
@@ -93,7 +134,7 @@
 
                             <!-- Sign up button -->
                             <button class="btn btn-info btn-rounded btn-block my-4 waves-effect z-depth-0"
-                                style="border-radius:20px" name="signup" type="submit">Sign Up</button>
+                                style="border-radius:20px" name="signup" id="btn-submit" type="submit">Sign Up</button>
 
                             <!-- Social register -->
                             <p>or sign up with:</p>
@@ -123,6 +164,7 @@
                                 <em>Sign up</em> you agree to our
                                 <a href="" target="_blank">terms of service</a>
 
+<<<<<<< HEAD
 
 <?php require "server.php";
 
@@ -162,6 +204,96 @@ if(isset($_REQUEST['email'])){
 }
 ?>
 
+=======
+                            <!-- <div class="message_box" style="margin:10px 0px;"> -->
+
+<script>
+$(document).ready(function() {
+   var delay = 2000;
+   $('.btn-info').click(function(e){
+   e.preventDefault();
+   var firstname = $('#firstname').val();
+   if(firstname == ''){
+   $('.message_box').html(
+   '<span style="color:red;">Enter Your First Name!</span>'
+   );
+   $('#firstname').focus();
+   return false;
+   }
+   var lastname = $('#lastname').val();
+   if(lastname == ''){
+   $('.message_box').html(
+   '<span style="color:red;">Enter Your Last Name!</span>'
+   );
+   $('#lastname').focus();
+   return false;
+   }
+ 
+   var email = $('#email').val();
+   if(email == ''){
+   $('.message_box').html(
+   '<span style="color:red;">Enter Email Address!</span>'
+   );
+   $('#email').focus();
+   return false;
+   }
+   if( $("#email").val()!='' ){
+   if( !isValidEmailAddress( $("#email").val() ) ){
+   $('.message_box').html(
+   '<span style="color:red;">Provided email address is incorrect!</span>'
+   );
+   $('#email').focus();
+   return false;
+   }
+   }
+ 
+   var password1 = $('#password1').val();
+   if(password1 == ''){
+   $('.message_box').html(
+   '<span style="color:red;">Please input at least 6 characters!</span>'
+   );
+   $('#password1').focus();
+   return false;
+   } 
+   var password2 = $('#password2').val();
+   if(password2 == ''){
+   $('.message_box').html(
+   '<span style="color:red;">Please input at least 6 characters!</span>'
+   );
+   $('#password2').focus();
+   return false;
+   } 
+ 
+   $.ajax
+   ({
+   type: "POST",
+   url: "reg.php",
+   data: "firstname="+firstname+"&lastname="+lastname+"&email="+email+"&password1="+password1,
+   beforeSend: function() {
+   $('.message_box').html(
+   '<img src="Loader.gif" width="25" height="25"/>'
+   );
+   }, 
+   success: function(data)
+   {
+   setTimeout(function() {
+   $('.message_box').html(data);
+   }, delay);
+   }
+   });
+   });
+ 
+});
+</script>
+
+<script>
+//Email Validation Function 
+function isValidEmailAddress(emailAddress) {
+    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+    return pattern.test(emailAddress);
+};
+</script>
+>>>>>>> session
                         </form>
                         <!-- Form -->
 
@@ -189,6 +321,12 @@ if(isset($_REQUEST['email'])){
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js">
     </script>
+<<<<<<< HEAD
+=======
+    <!-- JQuery validation -->
+    <script src="assets/js/ajax.js"></script>
+    <script type="text/javascript" src="assets/js/form-validation.js"></script>
+>>>>>>> session
     <!-- Sweet Alert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
