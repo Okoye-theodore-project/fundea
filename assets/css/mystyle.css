@@ -203,6 +203,29 @@ margin-left: 200px !important;
   max-width: 1080px
   ;
 }
+.inputfile{
+  display: none;
+
+}
+.inputfile-label{
+  height: 60px;
+  width: 300px;
+  position: absolute;
+  margin: auto;
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  text-align: center;
+  margin-left: 35%;         
+  align-items: center;
+  justify-content: center;
+  background-color: brown;
+  display: flex;
+}
+
+
 
 
 

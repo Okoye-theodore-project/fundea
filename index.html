@@ -6,23 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>funea</title>
-  <title>funea</title>
   <link rel="stylesheet" href="assets/css/mystyle.css">
   <link rel="stylesheet" href="assets/css/colorstyle.css">
   <link rel="stylesheet" href="assets/css/bootstrap.css">
   <link rel="stylesheet" href="assets/css/mdb.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link href="assets/mdb.css" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css?family=Montserrat:700,800|Vollkorn:900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,800|Vollkorn:900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400i&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/LineIcons.css">
+
+
+  <script src="assets/js/easypiechart.js"></script>
+
+
 </head>
 
-<body>
+<body onload="numberWithCommas(x)">
 
   <!-- Navbar -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
     <div class="container">
 
-      <!-- Brand --><a class="navbar-brand" href="#" target="_blank"><img src="assets/images/4x.png" style="height: 35px ; width:inherit" alt=""></a><!-- Collapse -->
+      <!-- Brand --><a class="navbar-brand" href="#" target="_blank"><img src="assets/images/4x.png"
+          style="height: 35px ; width:inherit" alt=""></a><!-- Collapse -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -88,7 +95,7 @@
         <strong>Bring Your <br>
           <span class="fsm"> IDEAS </span> to reality.</strong>
       </h1>
-<hr style="background-color: seashell ;" size="3px">
+      <hr style="background-color: seashell ;" size="3px">
       <p>
         <strong>Welcome to the best platform for financial Aid.</strong>
       </p>
@@ -167,165 +174,66 @@
   </div>
 
   <!--Main layout-->
-  <main class="mx-5  ">
-    <div class="row container-fluid " >
-      <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-3" ">
-        <div class="card mymx">
-          <img class="card-img-top" src="assets/images/forgiveness-banner.jpg" alt="Card image cap">
-          <div class="card-body">
-            <p style="text-align: right !important" class="cata-card fsl">category</p>
-            <h5 id="card-title" class="card-title fsm">Campaign title</h5>
-            <p id="card-user fsl"> User Name </p>
-
-            <p class="card-text"> <STRong>NOT MORE THAN 40 CHARATCTER</STRong> <br> quick example text to build on the
-              card title and make up the bulk of the card's conten.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><i class="lni-money-location mr-2 size-sm lni-fade-down-effect"></i>location
-            </li>
-            <li class="list-group-item">
-
-              <div class="fundprogressbar" style="background-color: dimgrey; height: 20px;"> </div>
-              <div class="card-body row" style="width: inherit !important; height: 100px;">
-                <div style="border-right: 1px solid rgb(53, 53, 53);" class="col-4 text-center        fundpercent ">
-                  fundpercent</div>
-                <div style="border-right: 1px solid rgb(53, 53, 53);" class="col-4 text-center        fundamount">
-                  fundamount</div>
-                <div class="col-4 text-center        fundtime ">fundtime </div>
-            </li>
-          </ul>
-
-
+  <main class="">
+    <div class="row mx-1 ">
+      <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-3 mb-4" ">
+        <div class=" card bc4">
+        <img class="card-img-top" src="assets/images/forgiveness-banner.jpg" alt="Card image cap">
+        <div class="card-body ">
+          <p style="text-align: right !important" class="cata-card fsr">Category</p>
+          <h5 id="card-title" class="card-title fsm">Campaign title</h5>
+          <p id="card-user fsl"> User Name </p>
+          <p class="card-text"> <STRong>NOT MORE THAN 40 CHARATCTER</STRong> <br> quick example text to build on the
+            card title and make up the bulk of the card's conten.</p>
         </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-3" ">
-        <div class="card mymx">
-          <img class="card-img-top" src="assets/images/forgiveness-banner.jpg" alt="Card image cap">
-          <div class="card-body">
-            <p style="text-align: right !important" class="cata-card fsl">category</p>
-            <h5 id="card-title" class="card-title fsm">Campaign title</h5>
-            <p id="card-user fsl"> User Name </p>
-
-            <p class="card-text"> <STRong>NOT MORE THAN 40 CHARATCTER</STRong> <br> quick example text to build on the
-              card title and make up the bulk of the card's conten.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><i class="lni-money-location mr-2 size-sm lni-fade-down-effect"></i>location
-            </li>
-            <li class="list-group-item">
-
-              <div class="fundprogressbar" style="background-color: dimgrey; height: 20px;"> </div>
-              <div class="card-body row" style="width: inherit !important; height: 100px;">
-                <div style="border-right: 1px solid rgb(53, 53, 53);" class="col-4 text-center        fundpercent ">
-                  fundpercent</div>
-                <div style="border-right: 1px solid rgb(53, 53, 53);" class="col-4 text-center        fundamount">
-                  fundamount</div>
-                <div class="col-4 text-center        fundtime ">fundtime </div>
-            </li>
-          </ul>
-
-
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-3" ">
-        <div class="card mymx">
-          <img class="card-img-top" src="assets/images/forgiveness-banner.jpg" alt="Card image cap">
-          <div class="card-body">
-            <p style="text-align: right !important" class="cata-card fsl">category</p>
-            <h5 id="card-title" class="card-title fsm">Campaign title</h5>
-            <p id="card-user fsl"> User Name </p>
-
-            <p class="card-text"> <STRong>NOT MORE THAN 40 CHARATCTER</STRong> <br> quick example text to build on the
-              card title and make up the bulk of the card's conten.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><i class="lni-money-location mr-2 size-sm lni-fade-down-effect"></i>location
-            </li>
-            <li class="list-group-item">
-
-              <div class="fundprogressbar" style="background-color: dimgrey; height: 20px;"> </div>
-              <div class="card-body row" style="width: inherit !important; height: 100px;">
-                <div style="border-right: 1px solid rgb(53, 53, 53);" class="col-4 text-center        fundpercent ">
-                  fundpercent</div>
-                <div style="border-right: 1px solid rgb(53, 53, 53);" class="col-4 text-center        fundamount">
-                  fundamount</div>
-                <div class="col-4 text-center        fundtime ">fundtime </div>
-            </li>
-          </ul>
-
-
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-3" ">
-        <div class="card mymx">
-          <img class="card-img-top" src="assets/images/forgiveness-banner.jpg" alt="Card image cap">
-          <div class="card-body">
-            <p style="text-align: right !important" class="cata-card fsl">category</p>
-            <h5 id="card-title" class="card-title fsm">Campaign title</h5>
-            <p id="card-user fsl"> User Name </p>
-
-            <p class="card-text"> <STRong>NOT MORE THAN 40 CHARATCTER</STRong> <br> quick example text to build on the
-              card title and make up the bulk of the card's conten.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><i class="lni-money-location mr-2 size-sm lni-fade-down-effect"></i>location
-            </li>
-            <li class="list-group-item">
-
-              <div class="fundprogressbar" style="background-color: dimgrey; height: 20px;"> </div>
-              <div class="card-body row" style="width: inherit !important; height: 100px;">
-                <div style="border-right: 1px solid rgb(53, 53, 53);" class="col-4 text-center        fundpercent ">
-                  fundpercent</div>
-                <div style="border-right: 1px solid rgb(53, 53, 53);" class="col-4 text-center        fundamount">
-                  fundamount</div>
-                <div class="col-4 text-center        fundtime ">fundtime </div>
-            </li>
-          </ul>
-
-
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-3" ">
-        <div class="card mymx">
-          <img class="card-img-top" src="assets/images/forgiveness-banner.jpg" alt="Card image cap">
-          <div class="card-body">
-            <p style="text-align: right !important" class="cata-card fsl">category</p>
-            <h5 id="card-title" class="card-title fsm">Campaign title</h5>
-            <p id="card-user fsl"> User Name </p>
-
-            <p class="card-text"> <STRong>NOT MORE THAN 40 CHARATCTER</STRong> <br> quick example text to build on the
-              card title and make up the bulk of the card's conten.</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><i class="lni-money-location mr-2 size-sm lni-fade-down-effect"></i>location
-            </li>
-            <li class="list-group-item">
-
-              <div class="fundprogressbar" style="background-color: dimgrey; height: 20px;"> </div>
-              <div class="card-body row" style="width: inherit !important; height: 100px;">
-                <div style="border-right: 1px solid rgb(53, 53, 53);" class="col-4 text-center        fundpercent ">
-                  fundpercent</div>
-                <div style="border-right: 1px solid rgb(53, 53, 53);" class="col-4 text-center        fundamount">
-                  fundamount</div>
-                <div class="col-4 text-center        fundtime ">fundtime </div>
-            </li>
-          </ul>
-
-
-        </div>
-      </div>
-
-
-
-
-    </div>
-    </div>
+        <ul class="  list-group list-group-flush" style="border:none !important;">
+          <li class="list-group-item text-right bc4 fsr" style="border:none !important;"><i
+              class="lni-money-location mr-2 size-sm lni-fade-down-effect"></i>Location
+          </li>
+          <li class="list-group-item bc5 fc4">
+            <div class="row align-items-end ">
+              <div style="text-align: right; " class="col-4" id="divSize">
+                <span class="fsr" style="font-size:70%"">Amonut</span>
+                    <h2 class=" container pr-0">
+                  &#8358;</h2><span>
+                    <h4 style=" margin-bottom: 0rem !important; font-size: 1em !important;" id="amount"> 5,00000</h4>
+                  </span>
+              </div>
+              <div class="col-4 chart ;" data-percent="73" style="text-align:center;  align-content: centerl;">
+                <p class="fsr" style="font-size:70%"">progress</p>
+              </div>
+              <style>
+              .chart{
+              border-left: 1px solid #F8F2DE;
+              border-right: 1px solid #F8F2DE;
+              }
+              </style>
+              <div class=" col-4" style="text-align: left">
+                  <p class="fsr  " style="font-size:70%; text-align: start !important">Ends in</p>
+                  <h2>39</h2><span class="fsr" style="font-size:140%">Days</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>    
+    </div>    
+    </div>   
   </main>
+  <script>
+    var element = document.querySelectorAll('.chart');
+    for (i = 0; i <= element.length; i++) {
+      new EasyPieChart(element[i], {});
+    }
+
+
+    new EasyPieChart(element, {});
+  </script>
+
   <!--Main layout-->
 
   <!--Footer-->
   <!-- Footer -->
-  <footer class="page-footer font-small mdb-color pt-4" style="background-color: rgb(49, 30, 8)!important" >
+  <footer class="page-footer font-small mdb-color pt-4" style="background-color: rgb(49, 30, 8)!important">
 
     <!-- Footer Links -->
     <div class="container text-center text-md-left">
