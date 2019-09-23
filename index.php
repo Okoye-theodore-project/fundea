@@ -104,7 +104,7 @@
   </div>
   <!--/.Carousel Wrapper-->
   <div conte class="myjumbotron" style="">
-    <h1 class="display-4" contenteditable="true" >Hello, world!</h1>
+    <h1 class="display-4" contenteditable="true" >Hello, orld!</h1>
     <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
       featured content or information.</p>
     <hr class="my-2">
