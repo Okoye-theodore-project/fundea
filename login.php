@@ -1,4 +1,6 @@
-<?php require'nav.php';?>
+<?php require 'nav.php';
+session_start();
+require 'server.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,23 +11,27 @@
     <title>Log In</title>
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=ABeeZee|Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/colorstyle.css" />
+    <link rel="stylesheet" href="assets/mdb.css" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/mystyle.css">
+    <link rel="stylesheet" href="assets/css/colorstyle.css">
 </head>
 
-<body>
+<body style="background-color: rgb(250,248,197)">
     
     <div class="container">
         <div class="row mt-5">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-6 offset-md-3 mt-5">
                 <!-- Material form login -->
                 <div class="card">
 
-                    <h5 class="card-header info-color white-text text-center py-4">
+                    <h5 class="card-header white-text text-center py-4">
                         <strong>Sign in</strong>
                     </h5>
 
@@ -33,11 +39,12 @@
                     <div class="card-body px-lg-5 pt-0">
 
                         <!-- Form -->
-                        <form class="text-center" style="color: #757575;" action="" method="post" enctype="multipart/form-data">
+                        <form class="text-center" style="color: #757575;" action="" method="post"
+                            enctype="multipart/form-data">
 
                             <!-- Email -->
                             <div class="md-form">
-                                <input type="email" id="" class="form-control" name="email" id="email"> 
+                                <input type="email" id="" class="form-control" name="email" id="email">
                                 <label for="">E-mail</label>
                             </div>
 
@@ -65,7 +72,7 @@
 
                             <!-- Sign in button -->
                             <button class="btn btn-info btn-rounded btn-block my-4 waves-effect z-depth-0"
-                                style="border-radius:20px" type="submit" id="btn-submit">Sign in</button>
+                                style="border-radius:20px" type="submit" name="btn-submit">Sign in</button>
 
                             <!-- Register -->
                             <p>Not a member?
@@ -87,15 +94,14 @@
                                 <i class="fab fa-github"></i>
                             </a>
 
-                           
-<?php
-require "server.php";
-// session_start();
 
-if(isset($_REQUEST['email'])) {
+                            <?php
+if ($_SERVER["REQUEST_METHOD"]=="POST") {
 
-  $email = $_REQUEST['email'];
-  $password = $_REQUEST['password'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+  $msg = array();
 
   $email = mysqli_real_escape_string($db,$email);
 
@@ -111,20 +117,24 @@ if(isset($_REQUEST['email'])) {
 
   if ($count == 1) {
 
-    $_SESSION['email'] = $email;
-
-    echo "LOG IN SUCCESSFUL!";
-    header("Location: index.php");
+    $_SESSION['signed_in'] = $email;
     
-  }
+    ?>
+
+                            <script type='text/javascript'>
+                            
+                                window.location.href='profile.php';
+                            </script>
+
+                            <?php
+                            
+                        }
   else{
-    echo  "<br>Invalid login details";
+    echo  "<p><br>Invalid login details</P>";
   }
 }
-    
 
 ?>
-
 
 
                         </form>
@@ -147,17 +157,18 @@ if(isset($_REQUEST['email'])) {
     <div id="pwdModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" style="border-radius:20px">
-                <div class="modal-header p-0 info-color " >
+                <div class="modal-header p-0 info-color ">
                     <div class="col-md p-0">
                         <h5 class="card-header info-color white-text text-center py-4">
                             <strong>Sign in</strong>
                         </h5>
                     </div>
                     <div class="col-md- p-0">
-                    <button type="button" class="close card-header red-text text-left" data-dismiss="modal" aria-hidden="true">×</button>
+                        <button type="button" class="close card-header red-text text-left" data-dismiss="modal"
+                            aria-hidden="true">×</button>
                     </div>
-                    
-                    
+
+
                 </div>
                 <div class="modal-body">
                     <div class="col-md-12">
@@ -172,8 +183,8 @@ if(isset($_REQUEST['email'])) {
                                                 <input class="form-control input-lg" placeholder="E-mail Address"
                                                     name="email" type="email">
                                             </div>
-                                            <input class="btn btn-lg btn-primary" style="border-radius:20px" value="Send My Password"
-                                                type="submit">
+                                            <input class="btn btn-lg btn-primary" style="border-radius:20px"
+                                                value="Send My Password" type="submit">
                                         </fieldset>
                                     </div>
                                 </div>
@@ -202,7 +213,7 @@ if(isset($_REQUEST['email'])) {
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js">
     </script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>

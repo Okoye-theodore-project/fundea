@@ -1,15 +1,15 @@
 <?php require_once "server.php";
 
 // Processing form data when form is submitted
-if(isset($_REQUEST['email'])){
-    $firstname = stripslashes($_REQUEST['firstname']);
+if(isset($_POST['email'])){
+    $firstname = stripslashes($_POST['firstname']);
     $firstname = mysqli_real_escape_string($db, $firstname);
-    $lastname = stripslashes($_REQUEST['lastname']);
+    $lastname = stripslashes($_POST['lastname']);
     $lastname = mysqli_real_escape_string($db, $lastname);
-    $email = stripslashes($_REQUEST['email']);
+    $email = stripslashes($_POST['email']);
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     $email = mysqli_real_escape_string($db, $email);
-    $password1 = stripslashes($_REQUEST['password1']);
+    $password1 = stripslashes($_POST['password1']);
     $password1 = mysqli_real_escape_string($db, $password1);
     $trn_date = date("Y-m-d H:i:s");
 
@@ -21,26 +21,44 @@ if(isset($_REQUEST['email'])){
         $count = mysqli_num_rows($result);
 
         if ($count == 1) {
-            echo "A user already available with this email!";
+            ?>
+            <!-- Sweet Alert -->
+            <script type='text/javascript'>
+            swal("Oops!", "User already exists with that email!", "error");
+            </script>
+
+            <?php
             return;
         }
 
-        $query = "INSERT into `users` (FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, PHONE, TRN_DATE)
-        VALUES ('$firstname', '$lastname', '$email', '".md5($password1)."', '', '$trn_date')";
+        $query = "INSERT into `users` (FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, TRN_DATE)
+        VALUES ('$firstname', '$lastname', '$email', '".md5($password1)."', '$trn_date')";
         $result = mysqli_query($db,$query);
         if($result){
-            $msg =  "You have successfully Registered. <a href='login.php'>LOGIN</a>  now..";
-            
+            ?>
+            <!-- Sweet Alert -->
+            <script type='text/javascript'>
+            swal("Successfully registered!", "Now let's help you with your dreams", "success");
+            window.setTimeout(function() {
+                location.href='login.php';
+            }, 0);
+            </script>
 
-		
-		echo $msg;
+            <?php   
 		
         } else {
+            ?>
+            
+            <!-- Sweet Alert -->
+            <script type='text/javascript'>
+            swal("Oops!", "User already exists with that email!", "error");
+            </script>
 
-            echo "error".$sql.mysqli_error($db);
-  
+            <?php
+            return;
          }
         }
 
 
 ?>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
