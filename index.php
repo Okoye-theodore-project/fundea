@@ -1,3 +1,10 @@
+<?php require 'server.php';
+include 'session.php';
+if(isset($_SESSION['email'])){
+  require 'nav.php';}elseif(!isset($_SESSION['email'])){
+    require 'nav-user.php';
+  };
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +12,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>funea</title>
+  <title>FUNDEA</title>
   <link rel="stylesheet" href="assets/css/mystyle.css">
   <link rel="stylesheet" href="assets/css/colorstyle.css">
   <link rel="stylesheet" href="assets/css/bootstrap.css">
@@ -25,9 +32,7 @@
 <body onload="numberWithCommas(x)">
 
   <!-- Navbar -->
- <?php 
- require 'nav.php';
- ?>
+ 
   <!-- Navbar -->
 
   <!--Carousel Wrapper-->

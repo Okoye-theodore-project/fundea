@@ -1,4 +1,4 @@
-<?php require'nav.php';?>
+<?php require 'nav.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +15,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/mystyle.css">
+    <link rel="stylesheet" href="assets/css/colorstyle.css">
 </head>
 
-<body>
+<body style="background-color: rgb(250,248,197)">
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-6 offset-md-3">
@@ -25,7 +27,7 @@
                 <!-- Material form register -->
                 <div class="card">
 
-                    <h5 class="card-header info-color white-text text-center py-4">
+                    <h5 class="card-header white-text text-center py-4" style="background-color: #532C0B">
                         <strong>Sign up</strong>
                     </h5>
 
@@ -75,15 +77,6 @@
                                 <small id="" class="form-text text-muted mb-4"></small>
                             </div>
 
-                            <!-- Phone number -->
-                            <div class="md-form">
-                                <input type="text" name="phone" id="phone" class="form-control">
-                                <label for="materialRegisterFormPhone">Phone number</label>
-                                <small class="form-text text-muted mb-4">
-                                    Optional - for two step authentication
-                                </small>
-                            </div>
-
                             <!-- Newsletter -->
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
@@ -123,94 +116,73 @@
                                 <em>Sign up</em> you agree to our
                                 <a href="" target="_blank">terms of service</a>
 
-                            <!-- <div class="message_box" style="margin:10px 0px;"> -->
+                                <!-- JQuery -->
+                            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script>
 $(document).ready(function() {
    var delay = 2000;
    $('.btn-info').click(function(e){
    e.preventDefault();
-   var firstname = $('#firstname').val();
-   if(firstname == ''){
-   $('.message_box').html(
-   '<span style="color:red;">Enter Your First Name!</span>'
-   );
-   $('#firstname').focus();
-   return false;
+
+   let password1 = $("#password1").val();
+   let password2 = $("#password2").val();
+   let email = $("#email").val();
+   let firstname = $("#firstname").val();
+   let lastname = $("#lastname").val();
+   let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   let emailValid = emailRegex.test(email);
+   let passRegex = new RegExp("^(?=.[a-z])(?=.[A-Z])(?=.*[0-9])");
+   let validpass = passRegex.test(password1);
+   if (
+     firstname == "" ||
+     lastname == "" ||
+     password1 == "" ||
+     password2 == "" ||
+     email == ""
+   ) {
+     swal("error!", "Empty fields are not allowed", "error");
    }
-   var lastname = $('#lastname').val();
-   if(lastname == ''){
-   $('.message_box').html(
-   '<span style="color:red;">Enter Your Last Name!</span>'
-   );
-   $('#lastname').focus();
-   return false;
+   else if (password1.length < 6 && validpass) {
+     $(".message_box")
+       .text(
+         "the password is too short or doesnt contain a capital or small letter or number"
+       )
+       .css("color", "red");
    }
- 
-   var email = $('#email').val();
-   if(email == ''){
-   $('.message_box').html(
-   '<span style="color:red;">Enter Email Address!</span>'
-   );
-   $('#email').focus();
-   return false;
+    else if (!password1.match(password2)) {
+     $(".message_box")
+       .text("your password and confirm password do not match")
+       .css("color", "red");
+   } else if (!emailValid) {
+     $(".message_box")
+       .text("Your Email is not valid")
+       .css("color", "red");
    }
-   if( $("#email").val()!='' ){
-   if( !isValidEmailAddress( $("#email").val() ) ){
-   $('.message_box').html(
-   '<span style="color:red;">Provided email address is incorrect!</span>'
-   );
-   $('#email').focus();
-   return false;
-   }
-   }
- 
-   var password1 = $('#password1').val();
-   if(password1 == ''){
-   $('.message_box').html(
-   '<span style="color:red;">Please input at least 6 characters!</span>'
-   );
-   $('#password1').focus();
-   return false;
-   } 
-   var password2 = $('#password2').val();
-   if(password2 == ''){
-   $('.message_box').html(
-   '<span style="color:red;">Please input at least 6 characters!</span>'
-   );
-   $('#password2').focus();
-   return false;
-   } 
- 
-   $.ajax
-   ({
-   type: "POST",
-   url: "reg.php",
-   data: "firstname="+firstname+"&lastname="+lastname+"&email="+email+"&password1="+password1,
-   beforeSend: function() {
-   $('.message_box').html(
-   '<img src="Loader.gif" width="25" height="25"/>'
-   );
-   }, 
-   success: function(data)
-   {
-   setTimeout(function() {
-   $('.message_box').html(data);
-   }, delay);
-   }
+   else {
+    $.ajax
+    ({
+    type: "POST",
+    url: "reg.php",
+    data: "firstname="+firstname+"&lastname="+lastname+"&email="+email+"&password1="+password1,
+    beforeSend: function() {
+    $('.message_box').html(
+    '<img src="assets/images/preloader.gif" width="50" height="50"/>'
+    );
+    }, 
+    success: function(data)
+    {
+    setTimeout(function() {
+    $('.message_box').html(data);
+    }, delay);
+    }
    });
-   });
- 
+   }
+});
 });
 </script>
 
-<script>
-//Email Validation Function 
-function isValidEmailAddress(emailAddress) {
-    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
-    return pattern.test(emailAddress);
-};
-</script>
+
                         </form>
                         <!-- Form -->
 
@@ -228,7 +200,6 @@ function isValidEmailAddress(emailAddress) {
 
 
     <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
     </script>
@@ -240,7 +211,6 @@ function isValidEmailAddress(emailAddress) {
     </script>
     <!-- JQuery validation -->
     <script src="assets/js/ajax.js"></script>
-    <script type="text/javascript" src="assets/js/form-validation.js"></script>
     <!-- Sweet Alert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
