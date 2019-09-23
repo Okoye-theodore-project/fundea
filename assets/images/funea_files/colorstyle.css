@@ -1,0 +1,44 @@
+.fc1{color: #707070 !important}
+.fc2{color: #FFFFFF !important}
+.fc3{color: #D4CBA7 !important}
+.fc4{color: #F8F2DE !important}
+.fc5{color:#000000 - #532C0B !important}
+
+
+.bc1{background-color: #707070 !important}
+.bc2{background-color: #FFFFFF !important}
+.bc3{background-color: #D4CBA7 !important}
+.bc4{background-color: #F8F2DE !important}
+.bc6{background-color: #000000 !important}
+.bc5{background-color: #532C0B !important}
+.bc7{background-color: rgba(83, 43, 11, 0.582) !important}
+
+
+.fs1{font-size: 16px !important;}
+.fs2{font-size: 28px !important;}
+.fs3{font-size: 46px !important;}
+.fs5{font-size: 70px !important;}
+.fs6{font-size: 90px !important;}
+.fs7{font-size: 130px !important;}
+.fs55{font-size: 10vw !important;}
+.fs33{font-size: 4vw !important;}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400i&display=swap');
+.fsm{font-family: 'Montserrat', sans-serif !important;}
+.fsl{font-family: 'Lucida', sans-serif !important;}
+.fsr{font-family: 'Roboto', sans-serif !important;
+        font-style: italic;}
+.bold{font-weight: bold }
+
+.a-l{text-align: left !important;}
+.a-c{text-align: center !important;}
+.a-r{text-align: right !important;}
+
+p {
+    margin-bottom: 0rem !important;    
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}

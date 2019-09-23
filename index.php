@@ -103,8 +103,8 @@
 
   </div>
   <!--/.Carousel Wrapper-->
-  <div class="myjumbotron" style="">
-    <h1 class="display-4">Hello, world!</h1>
+  <div conte class="myjumbotron" style="">
+    <h1 class="display-4" contenteditable="true" >Hello, world!</h1>
     <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
       featured content or information.</p>
     <hr class="my-2">
@@ -121,7 +121,7 @@
     <div class="row mx-1 ">
       <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-3 mb-4" ">
         <div class=" card bc4">
-        <img class="card-img-top" src="assets/images/forgiveness-banner.jpg" alt="Card image cap">
+        <img class="card-img-top" src="assets/images/handshake.jpg" alt="Card image cap">
         <div class="card-body ">
           <p style="text-align: right !important" class="cata-card fsr">Category</p>
           <h5 id="card-title" class="card-title fsm">Campaign title</h5>

@@ -23,6 +23,13 @@
 .fs55{font-size: 10vw !important;}
 .fs33{font-size: 4vw !important;}
 
+.ttl{text-transform: lowercase}
+.ttu{text-transform: uppercase}
+.ttc{text-transform: capitalize}
+.tt{text-transform: }
+
+
+
 @import url('https://fonts.googleapis.com/css?family=Roboto:400i&display=swap');
 .fsm{font-family: 'Montserrat', sans-serif !important;}
 .fsl{font-family: 'Lucida', sans-serif !important;}
@@ -42,3 +49,72 @@ p {
   max-width: 100%;
   height: auto;
 }
+
+.embed-container {
+position: relative;
+padding-bottom: 56.25%;
+height: 0;
+overflow: hidden;
+max-width: 100%;
+}
+
+.embed-container iframe,
+.embed-container object,
+.embed-container embed{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+
+
+/* .iframe-container{
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; 
+  height: 0;
+}
+.iframe-container iframe{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+} */
+
+.links{
+    font-weight: 200 !important;
+    font-size: 0.5rem !important;
+    height: 40px !important;
+   
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: none;
+    }
+  }
+
+  .gt{
+      background-color: rgba(167, 143, 123, 0) !important
+  }
