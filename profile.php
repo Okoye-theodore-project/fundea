@@ -35,9 +35,13 @@ if (!isset($_SESSION['signed_in'])) {
             class="card"
             style="width: auto; background-color: rgb(85,55,18)"
           >
-            <img src="<?php $picture = "<img src='photo/".$row['PICTURE']." alt='image'image'>";?>" class="card" alt="Paris" style="height: 170px; z-index:
-            1;position: inherit ; margin: auto; ;top: 3em;border-radius: 50%;
-            border: 5px solid #ddd;" />
+          <?php
+           
+             echo  "<img src='".$row['PICTURE']."' class='card' id='preview' style='height: 170px; width: auto; z-index:
+             1;position: inherit ; margin: auto; ;top: 3em;border-radius: 50%;
+             border: 5px solid #ddd;' alt='No Cover Image'/>";
+             
+            ?> 
 
             <div class="bg-white" style="height: fit-content">
               <h3
@@ -152,8 +156,11 @@ if (!isset($_SESSION['signed_in'])) {
                                         >
                                           <div>
                                             
-    <?php echo $picture = "<img src='files/".$row['PICTURE']." class='d-flex justify-content-center align-items-center rounded' style='height: 140px; background-color: rgb(233, 236, 239);' id='preview' alt='image'/>";?>
-                                            
+                                          <?php
+           
+             echo  "<img width='140px' src='".$row['PICTURE']."' id='preview' alt='No Cover Image'/>";
+             
+            ?>               
                                           </div>
 
                                         </div>
