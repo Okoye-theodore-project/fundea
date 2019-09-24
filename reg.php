@@ -1,4 +1,4 @@
-<?php require_once "server.php";
+<?php require "server.php";
 
 // Processing form data when form is submitted
 if(isset($_POST['email'])){
@@ -31,10 +31,11 @@ if(isset($_POST['email'])){
             return;
         }
 
-        $query = "INSERT into `users` (FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, TRN_DATE)
+        $query = "INSERT INTO users (FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, TRN_DATE)
         VALUES ('$firstname', '$lastname', '$email', '".md5($password1)."', '$trn_date')";
-        $result = mysqli_query($db,$query);
-        if($result){
+       
+        if(mysqli_query($db,$query)){
+
             ?>
             <!-- Sweet Alert -->
             <script type='text/javascript'>
@@ -57,7 +58,7 @@ if(isset($_POST['email'])){
             <?php
             return;
          }
-        }
+        } ELSE  {echo "NOTHING";} 
 
 
 ?>

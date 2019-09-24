@@ -53,21 +53,21 @@ if (!isset($_SESSION['signed_in'])) {
                     <div class="form-group">
                         <label for="textarea">Campaign Description*</label>
                         <textarea class="form-control" rows="5" id="campdesc" name="campdesc" value=""></textarea>
-                        <p style="font-size: 12px; color: #532C0B;">
-                            *not more than
-                            250 characters.
-                        </p>
                     </div>
                     <div class="form-group">
                         <select class="browser-default custom-select mb-2" style="width: 200px" id="campcat"
                             name="campcat">
                             <option selected="selected">Define Category</option>
-                            <option value="1"></option>
-                            <option value="2">Innovation</option>
-                            <option value="3">Agriculture</option>
-                            <option value="4">tech</option>
-                            <option value="5">event</option>
-                            <option value="6">medical</option>
+                            <option value="Agriculture & Nature">Agriculture & Nature</option>
+                            <option value="Art & Entertainment">Art & Entertainment</option>
+                            <option value="Events">Events</option>
+                            <option value="Humanitarian">Humanitarian</option>
+                            <option value="Innovation">Innovation</option>
+                            <option value="Medical">Medical</option>
+                            <option value="Politics">Politics</option>
+                            <option value="Religious">Religious</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Technology">Technology</option>
                         </select>
                     </div>
                     <input type="button" class="next btn btn-info" style="border-radius: 15px" value="Next" />
@@ -92,7 +92,7 @@ if (!isset($_SESSION['signed_in'])) {
                             <option value='Edo'>Edo</option>
                             <option value='Ekiti'>Ekiti</option>
                             <option value='Enugu'>Enugu</option>
-                            <option value='Gombe'>FCT-Abuja</option>
+                            <option value='FCT-Abuja'>FCT-Abuja</option>
                             <option value='Gombe'>Gombe</option>
                             <option value='Imo'>Imo</option>
                             <option value='Jigawa'>Jigawa</option>

@@ -31,10 +31,10 @@
   <?php
   require 'nav.php'
   ?>
-  <div class="container">
-      <div class="jumbotron jumbotron-fluid bc5 fc3">
+  <div class="container mt-5">
+      <div class="jumbotron jumbotron-fluid bc5 fc3 text-center">
           <div class="container">
-            <h1 class="display-4">campaign Title</h1>
+            <h1 class="display-4">Campaign Title</h1>
             <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
           </div>
         </div>
@@ -59,7 +59,7 @@
             <p class="fs3">40 </p>
             <p>Day left</p>
           </li>
-          <li class="list-group-item gt py-0 ">
+          <li class="list-group-item gt py-0 text-center">
           <a  href="#" class="btn links fs5 bc3"> share campaign</a>
            
           </li>

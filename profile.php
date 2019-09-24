@@ -4,6 +4,10 @@
 if (!isset($_SESSION['signed_in'])) {
 	header('location:index.php');
 }
+ $sql = "SELECT projects.*, users.FIRST_NAME, users.LAST_NAME, DATEDIFF(projects.END_DATE, CURDATE()) AS days
+  FROM projects, users
+  WHERE projects.USER_ACCOUNT = users.ID";
+            $result = $db->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +41,7 @@ if (!isset($_SESSION['signed_in'])) {
           >
           <?php
            
-             echo  "<img src='".$row['PICTURE']."' class='card' id='preview' style='height: 170px; width: auto; z-index:
+             echo  "<img src='".$row['PICTURE']."' class='card' style='height: 170px; width: auto; z-index:
              1;position: inherit ; margin: auto; ;top: 3em;border-radius: 50%;
              border: 5px solid #ddd;' alt='No Cover Image'/>";
              
@@ -57,7 +61,6 @@ if (!isset($_SESSION['signed_in'])) {
               <p class="card-text">
                 <?php echo $bio = $row['BIO'];?>
               </p>
-              <a href="#" class="btn">See Profile</a>
             </div>
           </div>
           <br />
@@ -113,6 +116,7 @@ if (!isset($_SESSION['signed_in'])) {
 
                   <hr />
                   <div class="row">
+                    
                     <div class="col">
                       <div class="card" style="width: 18rem;">
                         <img
@@ -126,7 +130,7 @@ if (!isset($_SESSION['signed_in'])) {
                             Some quick fundea text to build on the card title
                             and make up the bulk of the card's content.
                           </p>
-                          <a href="#" class="btn">read more</a>
+                          <a href="aCampaign.php" class="btn">read more</a>
                         </div>
                       </div>
                     </div>
@@ -172,7 +176,7 @@ if (!isset($_SESSION['signed_in'])) {
                                           class="text-center text-sm-left mb-2 mb-sm-0"
                                         >
                                           <h4
-                                            class="pt-sm-2 pb-1 mb-0 text-nowrap"
+                                            class="pt-sm-2 pb-1 mb-0 text-nowrap" style='text-transform: capitalize;'
                                           >
                                             <?php echo $row['FIRST_NAME']. " " . $row['LAST_NAME']; ?>
                                           </h4>
@@ -230,6 +234,7 @@ if (!isset($_SESSION['signed_in'])) {
                                                     <label>First Name</label>
                                                     <input
                                                       class="form-control"
+                                                      style='text-transform: capitalize;'
                                                       type="text"
                                                       id="firstname"
                                                       name="firstname"
@@ -243,6 +248,7 @@ if (!isset($_SESSION['signed_in'])) {
                                                     <label>Last Name</label>
                                                     <input
                                                       class="form-control"
+                                                      style='text-transform: capitalize;'
                                                       type="text"
                                                       id="lastname"
                                                       name="lastname"

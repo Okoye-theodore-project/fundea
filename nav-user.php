@@ -1,7 +1,7 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
     <div class="container">
 
-      <!-- Brand --><a class="navbar-brand" href="index.php" ><img src="assets/images/4x.png"
+      <!-- Brand --><a class="navbar-brand" href="dashboard.php" ><img src="assets/images/4x.png"
           style="height: 35px ; width:inherit" alt=""></a><!-- Collapse -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

@@ -125,7 +125,7 @@ $(document).ready(function() {
    $('.btn-info').click(function(e){
    e.preventDefault();
 
-   let password1 = $("#password1").val();
+let password1 = $("#password1").val();
    let password2 = $("#password2").val();
    let email = $("#email").val();
    let firstname = $("#firstname").val();

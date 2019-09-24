@@ -1,409 +1,210 @@
 <?php require 'server.php';
-	  include 'session.php';
+// include 'session.php';
+  require 'nav-user.php';
 
-if (!isset($_SESSION['signed_in'])) {
-	header('location:index.php');
-}
-?>
-
+  
+  $sql = "SELECT projects.*, users.FIRST_NAME, users.LAST_NAME, DATEDIFF(projects.END_DATE, CURDATE()) AS days
+  FROM projects, users
+  WHERE projects.USER_ACCOUNT = users.ID";
+            $result = $db->query($sql);
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>FUNDEA</title>
-    <link rel="stylesheet" href="assets/css/mystyle.css" />
-    <link rel="stylesheet" href="assets/css/colorstyle.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap.css" />
-    <link rel="stylesheet" href="assets/css/mdb.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
-    <link href="assets/mdb.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,800|Vollkorn:900&display=swap"
-        rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FUNDEA</title>
+  <link rel="stylesheet" href="assets/css/mystyle.css">
+  <link rel="stylesheet" href="assets/css/colorstyle.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/mdb.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link href="assets/mdb.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,800|Vollkorn:900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400i&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/LineIcons.css">
+
+
+  <script src="assets/js/easypiechart.js"></script>
+
+
 </head>
 
-<body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
-        <div class="container">
-            <!-- Brand --><a class="navbar-brand" href="index.php" target="_blank"><img src="assets/images/4x.png"
-                    style="height: 35px ; width:inherit" alt="" /></a><!-- Collapse -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<body onload="numberWithCommas(x)">
 
-            <!-- Links -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Left -->
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="#">Discover<span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="campaign.html" target="_blank">Start a Campaign</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" target="_blank">Blog </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" target="_blank">About Us</a>
-                    </li>
-                </ul>
+  <!-- Navbar -->
+ 
+  <!-- Navbar -->
 
-                <!-- Right -->
-                <ul class="navbar-nav nav-flex-icons">
-                    <li class="nav-item">
-                        <a href="https://www.facebook.com/mdbootstrap" class="nav-link" target="_blank">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://twitter.com/MDBootstrap" class="nav-link" target="_blank">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="logout.php" class="nav-link border border-light rounded"
-                            style="padding-right: 20px !important; padding-left: 20px !important">
-                            Log Out
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <!-- <div id="wrap" class="nav-link border border-light rounded">
-                                  <form action="" autocomplete="on">
-                                  <input id="search" name="search" type="text" placeholder="What're we looking for ?">
-                                  <input id="search_submit" value="Rechercher" type="submit">
-                                  <i class="fas lni-search active" aria-hidden="true"
-                                  style="padding: 9px !important"></i>
-                                  </form>
-                                </div>  -->
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Navbar -->
+  <!--Carousel Wrapper-->
+  <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
 
-    <div class="container-fluid gedf-wrapper mt-5">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card" style="width: auto; background-color: rgb(85,55,18)">
-                    <img src="<?php echo $picture = "<img src='photo/".$row['PICTURE']." alt='image'image'>"; ?>" class="card" alt="Paris"
-                        style="height: 170px; z-index: 1;position: inherit  ; margin: auto; ;top: 3em;border-radius: 50%; border: 5px solid #ddd;" />
-
-                    <div class="bg-white" style="height: fit-content">
-                        <h3 class="fsm"
-                            style="  text-transform: capitalize; margin-top: 50px!important; text-align:center"><?php echo $row['FIRST_NAME']. " " . $row['LAST_NAME']; ?></h3>
-                        <hr>
-                    </div>
-                    <div class="card-body" style="background-color: rgb(255, 255, 255)">
-                        <h4 class="card-title">hydrogen</h4>
-                        <p class="card-text">
-                            <?php echo $bio = $row['BIO'];?>
-                        </p>
-                    </div>
-                </div>
-                <br />
-            </div>
-            <div class="col-md-6 gedf-main mt-5">
-                <!--- \\\\\\\Post-->
-                <div class="card gedf-card">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab"
-                                    aria-controls="posts" aria-selected="true">Your Campaigns</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images"
-                                    aria-selected="false" href="#images">Edit Profile</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-body">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="posts" role="tabpanel"
-                                aria-labelledby="posts-tab">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="card" style="width: 18rem;">
-                                            <img class="card-img-top" src="assets/images/handshake.jpg"
-                                                alt="Card image cap" />
-                                            <div class="card-body">
-                                                <h5 class="card-title">other Campaign title</h5>
-                                                <p class="card-text">
-                                                    Some quick example text to build on the card title
-                                                    and make up the bulk of the card's content.
-                                                </p>
-                                                <a href="#" class="btn btn-primary">read more</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
-                                <div class="form-group">
-                                    <div class="container">
-                                        <div class="row flex-lg-nowrap">
-                                            <div class="col">
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <div class="e-profile">
-                                                                    <div class="row">
-                                                                        <div class="col-12 col-sm-auto mb-3">
-                                                                            <div class="mx-auto" style="width: 140px;">
-                                                                                <div class="d-flex justify-content-center align-items-center rounded rounded-circle z-depth-1-half avatar-pic"
-                                                                                    style="height: 140px; background-color: rgb(233, 236, 239);">
-                                                                                    <?php echo $picture = "<img src='photo/".$row['PICTURE']." alt='image'image'>"; ?>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div
-                                                                            class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                                                                            <div
-                                                                                class="text-center text-sm-left mb-2 mb-sm-0">
-                                                                                <h4
-                                                                                    class="pt-sm-2 pb-1 mb-0 text-nowrap">
-<?php echo $row['FIRST_NAME']. " " . $row['LAST_NAME']; ?></h4>
-                                                                                <p class="mb-0"><?php echo $row['EMAIL']; ?></p>
-                                                                                <div class="text-muted">
-                                                                                    <small>Last seen 2 hours ago</small>
-                                                                                </div>
-                                                                                <div class="mt-2">
+    <div class=" white-text wow fadeIn ix" style="background-color: rgba(0, 0, 0, 0.205) ;padding: 10px;">
+      <h1 class="mb-4">
+        <strong>Bring Your <br>
+          <span class="fsm"> IDEAS </span> to reality.</strong>
+      </h1>
+      <hr style="background-color: seashell ;" size="3px">
+      <p>
+        <strong>Welcome to the best platform for financial Aid.</strong>
+      </p>
 
 
-                                                                                    <input class="inputfile"
-                                                                                    type="file" name="file"
-                                                                                    id="file" accept="image/*">
-                                                                                <label class="btn " for="file"
-                                                                                    class="inputfile-label">
-                                                                                    <i
-                                                                                    class="fa fa-fw fa-camera"></i>
-                                                                                <span>Change Photo</span>
-                                                                                </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="text-center text-sm-right">
-                                                                                <span
-                                                                                    class="badge badge-secondary bc6">@Fundea</span>
-                                                                                <div class="text-muted">
-                                                                                    <?php echo 'Joined ' . $row['TRN_DATE']; ?>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <ul class="nav nav-tabs">
-
-                                                                    </ul>
-                                                                    <div class="tab-content pt-3">
-                                                                        <div class="tab-pane active">
-                                                                            <form class="form" novalidate="">
-                                                                                <div class="row">
-                                                                                    <div class="col">
-                                                                                        <div class="row">
-                                                                                            <div class="col">
-                                                                                                <div class="form-group">
-                                                                                                    <label>First
-                                                                                                        Name</label>
-                                                                                                    <input
-                                                                                                        class="form-control"
-                                                                                                        type="text"
-                                                                                                        name="name"
-                                                                                                        value="<?php echo $row['FIRST_NAME']; ?>" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="col">
-                                                                                                <div class="form-group">
-                                                                                                    <label>Last
-                                                                                                        name</label>
-                                                                                                    <input
-                                                                                                        class="form-control"
-                                                                                                        type="text"
-                                                                                                        name="username"
-                                                                                                        value="<?php echo $row['LAST_NAME']; ?>" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="row">
-                                                                                            <div class="col">
-                                                                                                <div class="form-group">
-                                                                                                    <label>Email</label>
-                                                                                                    <input
-                                                                                                        class="form-control"
-                                                                                                        type="text"
-                                                                                                        value="<?php echo $row['EMAIL']; ?>" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="row">
-                                                                                            <div class="col mb-3">
-                                                                                                <div class="form-group">
-                                                                                                    <label>About</label>
-                                                                                                    <textarea
-                                                                                                        class="form-control"
-                                                                                                        rows="5"
-                                                                                                        value="<?php echo $row['BIO']; ?>"></textarea>
-                                                                                                    <p
-                                                                                                        style="font-size: 12px; color: red;">
-                                                                                                        *not more than
-                                                                                                        250 characters.
-                                                                                                    </p>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-12 col-sm-6 mb-3">
-                                                                                        <div class="mb-2">
-                                                                                            <b>Change Password</b>
-                                                                                        </div>
-                                                                                        <div class="row">
-                                                                                            <div class="col">
-                                                                                                <div class="form-group">
-                                                                                                    <label>Current
-                                                                                                        Password</label>
-                                                                                                    <input
-                                                                                                        class="form-control"
-                                                                                                        type="password"
-                                                                                                        placeholder="••••••" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="row">
-                                                                                            <div class="col">
-                                                                                                <div class="form-group">
-                                                                                                    <label>New
-                                                                                                        Password</label>
-                                                                                                    <input
-                                                                                                        class="form-control"
-                                                                                                        type="password"
-                                                                                                        placeholder="••••••" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="row">
-                                                                                            <div class="col">
-                                                                                                <div class="form-group">
-                                                                                                    <label>Confirm
-                                                                                                        <span
-                                                                                                            class="d-none d-xl-inline">Password</span></label>
-                                                                                                    <input
-                                                                                                        class="form-control"
-                                                                                                        type="password"
-                                                                                                        placeholder="••••••" />
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div
-                                                                                        class="col-12 col-sm-5 offset-sm-1 mb-3">
-                                                                                        <div class="mb-2">
-                                                                                            <b>Keeping in Touch</b>
-                                                                                        </div>
-                                                                                        <div class="row">
-                                                                                            <div class="col">
-                                                                                                <label>Email
-                                                                                                    Notifications</label>
-                                                                                                <div
-                                                                                                    class="custom-controls-stacked px-2">
-                                                                                                    <div
-                                                                                                        class="custom-control custom-checkbox">
-                                                                                                        <input
-                                                                                                            type="checkbox"
-                                                                                                            class="custom-control-input"
-                                                                                                            id="notifications-blog"
-                                                                                                            checked="" />
-                                                                                                        <label
-                                                                                                            class="custom-control-label"
-                                                                                                            for="notifications-blog">Blog
-                                                                                                            posts</label>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="custom-control custom-checkbox">
-                                                                                                        <input
-                                                                                                            type="checkbox"
-                                                                                                            class="custom-control-input"
-                                                                                                            id="notifications-news"
-                                                                                                            checked="" />
-                                                                                                        <label
-                                                                                                            class="custom-control-label"
-                                                                                                            for="notifications-news">Newsletter</label>
-                                                                                                    </div>
-                                                                                                    <div
-                                                                                                        class="custom-control custom-checkbox">
-                                                                                                        <input
-                                                                                                            type="checkbox"
-                                                                                                            class="custom-control-input"
-                                                                                                            id="notifications-offers"
-                                                                                                            checked="" />
-                                                                                                        <label
-                                                                                                            class="custom-control-label"
-                                                                                                            for="notifications-offers">Personal
-                                                                                                            Offers</label>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="row">
-                                                                                    <div
-                                                                                        class="col d-flex justify-content-end">
-                                                                                        <button class="btn btn-primary"
-                                                                                            type="submit">
-                                                                                            Save Changes
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="py-4"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Post /////-->
-
-                <!--- \\\\\\\Post-->
-                <div class="card gedf-card">
-                    <div class="card-header"></div>
-                </div>
-                <!-- Post /////-->
-            </div>
-            <div class="col-md-3">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="assets/images/handshake.jpg" alt="Card image cap" />
-                    <div class="card-body">
-                        <h5 class="card-title">other Campaign title</h5>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up
-                            the bulk of the card's content.
-                        </p>
-                        <a href="#" class="btn btn-primary">read more</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
-    <div class="profilemargin "></div>
+    <!--Indicators-->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+      <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+    </ol>
+    <!--/.Indicators-->
+
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+
+      <!--First slide-->
+      <div class="carousel-item active">
+        <div class="view"
+          style="background-image: url(assets/images/banner-research-new-idea-award.jpg); background-repeat: no-repeat; background-size: cover; background-position: right bottom !important">
+
+
+        </div>
+      </div>
+      <!--/First slide-->
+
+      <!--Second slide-->
+      <div class="carousel-item">
+        <div class="view"
+          style="background-image: url(assets/images/forgiveness-banner.jpg); background-repeat: no-repeat; background-size: cover;background-position: right bottom !important">
+
+
+        </div>
+      </div>
+      <!--/Second slide-->
+
+      <!--Third slide-->
+      <div class="carousel-item">
+        <div class="view"
+          style="background-image: url(assets/images/handshake.jpg); background-repeat: no-repeat; background-size: cover; background-position: center">
+
+
+        </div>
+      </div>
+      <!--/Third slide-->
+
+    </div>
+    <!--/.Slides-->
+
+    <!--Controls-->
+    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+    <!--/.Controls-->
+
+  </div>
+  <!--/.Carousel Wrapper-->
+  <div conte class="myjumbotron" style="">
+    <h1 class="display-4" contenteditable="true" >Hello, orld!</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to
+      featured content or information.</p>
+    <hr class="my-2">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p class="lead">
+      <a class="btn text-white btn-md" href="#" role="button" style="background-color: rgb(85,55,18)">Learn more</a>
+    </p>
+  </div>
+
+  </div>
+
+  
+  <!--Main layout-->
+  <main class="">
+    
+    <div class="row mx-5 px-5">
+    <?php
+        //Fetch Data form database
+        if($result->num_rows > 0){
+         while($row = $result->fetch_assoc()){
+         ?>
+      <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-3 mb-4" ">
+        <div class=" card bc4" href="index.php">
+      <p><a href="aCampaign.php"><?php echo  "<img class='card-img-top' style='height:300px; width: 100%;' src='".$row['IMAGE']."' id='preview' alt='Card image cap'/>"; ?></a></p> 
+        <div class="card-body ">
+          <p style="text-align: right !important" class="cata-card fsr"><?php echo $row['PROJECT_CATEGORY'];?></p>
+          <h5 id="card-title" class="card-title fsm" style='text-transform: uppercase;'><?php echo $row['PROJECT_NAME'];?></h5>
+          <p id="card-user fsl" style='text-transform: capitalize; font-weight: bold;'>By 
+            <?php echo $row['FIRST_NAME']. " " . $row['LAST_NAME']; ?>
+          </p>
+          <p class="card-text" style="height: 75px"> <?php echo $row['PROJECT_DESCRIPTION'];?></p>
+        </div>
+        <ul class="  list-group list-group-flush" style="border:none !important;">
+          <li class="list-group-item text-right bc4 fsr" style="border:none !important;"><i
+              class="lni-money-location mr-2 size-sm lni-fade-down-effect"></i><?php echo $row['PROJECT_LOCATION'];?>
+          </li>
+          <li class="list-group-item bc5 fc4">
+            <div class="row align-items-end ">
+              <div style="text-align: center; " class="col-4  pb-2" id="divSize">
+                <span class="fsr" style="font-size:70%"">Amount</span>
+                    <h2 class=" container mb-0 p-0">
+                  &#8358;</h2><span>
+                    <h4 style=" margin-bottom: 0rem !important; font-size: 1em !important;" id="amount"><?php echo $english_format_number = number_format($row['GOAL']);?></h4>
+                  </span>
+              </div>
+              <div class="col-4 chart ;" data-percent="45" style="text-align:center;  align-content: centerl;">
+                <p class="fsr" style="font-size:70%"">progress</p>
+              </div>
+              <style>
+              .chart{
+              border-left: 1px solid #F8F2DE;
+              border-right: 1px solid #F8F2DE;
+              }
+              </style>
+              <div class=" col-4" style="text-align: center">
+                  <p class="fsr  " style="font-size:70%; text-align: center !important">Ends in</p>
+                  <h2 class="mb-0 p-0"><?php echo $row['days'];?></h2><span class="fsr" style="font-size:140%">Days</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>    
+    </div>
+    <?php
+           }
+           }
+           else
+            { echo "No data found" ;} ?>    
+    </div>   
+  </main>
+  <script>
+    var element = document.querySelectorAll('.chart');
+    for (i = 0; i <= element.length; i++) {
+      new EasyPieChart(element[i], {});
+    }
+
+
+    new EasyPieChart(element, {});
+  </script>
+
+  <!--Main layout-->
+
+  <!--Footer-->
+  <!-- Footer -->
+ <?php 
+ require 'footer.php'
+ ?>
+  <!-- Footer -->
+  <!--/.Footer-->
+
 </body>
+
 <script src="assets/js/jquery-3.4.1.slim.min.js"></script>
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.js"></script>

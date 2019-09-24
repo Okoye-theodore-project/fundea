@@ -1,9 +1,10 @@
 <?php require 'server.php';
-include 'session.php';
-if(isset($_SESSION['email'])){
-  require 'nav.php';}elseif(!isset($_SESSION['email'])){
-    require 'nav-user.php';
-  };
+ require 'nav.php';   
+  
+  $sql = "SELECT projects.*, users.FIRST_NAME, users.LAST_NAME, DATEDIFF(projects.END_DATE, CURDATE()) AS days
+  FROM projects, users
+  WHERE projects.USER_ACCOUNT = users.ID";
+            $result = $db->query($sql);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,33 +122,41 @@ if(isset($_SESSION['email'])){
 
   </div>
 
+  
   <!--Main layout-->
   <main class="">
-    <div class="row mx-1 ">
+    
+    <div class="row mx-5 px-5">
+    <?php
+        //Fetch Data form database
+        if($result->num_rows > 0){
+         while($row = $result->fetch_assoc()){
+         ?>
       <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-3 mb-4" ">
-        <div class=" card bc4">
-        <img class="card-img-top" src="assets/images/handshake.jpg" alt="Card image cap">
+        <div class=" card bc4" href="index.php">
+      <p><a href="aCampaign.php"><?php echo  "<img class='card-img-top' style='height:300px; width: 100%;' src='".$row['IMAGE']."' id='preview' alt='Card image cap'/>"; ?></a></p> 
         <div class="card-body ">
-          <p style="text-align: right !important" class="cata-card fsr">Category</p>
-          <h5 id="card-title" class="card-title fsm">Campaign title</h5>
-          <p id="card-user fsl"> User Name </p>
-          <p class="card-text"> <STRong>NOT MORE THAN 40 CHARATCTER</STRong> <br> quick example text to build on the
-            card title and make up the bulk of the card's conten.</p>
+          <p style="text-align: right !important" class="cata-card fsr"><?php echo $row['PROJECT_CATEGORY'];?></p>
+          <h5 id="card-title" class="card-title fsm" style='text-transform: uppercase;'><?php echo $row['PROJECT_NAME'];?></h5>
+          <p id="card-user fsl" style='text-transform: capitalize; font-weight: bold;'>By 
+            <?php echo $row['FIRST_NAME']. " " . $row['LAST_NAME']; ?>
+          </p>
+          <p class="card-text" style="height: 75px"> <?php echo $row['PROJECT_DESCRIPTION'];?></p>
         </div>
         <ul class="  list-group list-group-flush" style="border:none !important;">
           <li class="list-group-item text-right bc4 fsr" style="border:none !important;"><i
-              class="lni-money-location mr-2 size-sm lni-fade-down-effect"></i>Location
+              class="lni-money-location mr-2 size-sm lni-fade-down-effect"></i><?php echo $row['PROJECT_LOCATION'];?>
           </li>
           <li class="list-group-item bc5 fc4">
             <div class="row align-items-end ">
-              <div style="text-align: right; " class="col-4" id="divSize">
-                <span class="fsr" style="font-size:70%"">Amonut</span>
-                    <h2 class=" container pr-0">
+              <div style="text-align: center; " class="col-4  pb-2" id="divSize">
+                <span class="fsr" style="font-size:70%"">Amount</span>
+                    <h2 class=" container mb-0 p-0">
                   &#8358;</h2><span>
-                    <h4 style=" margin-bottom: 0rem !important; font-size: 1em !important;" id="amount"> 5,00000</h4>
+                    <h4 style=" margin-bottom: 0rem !important; font-size: 1em !important;" id="amount"><?php echo $english_format_number = number_format($row['GOAL']);?></h4>
                   </span>
               </div>
-              <div class="col-4 chart ;" data-percent="73" style="text-align:center;  align-content: centerl;">
+              <div class="col-4 chart ;" data-percent="45" style="text-align:center;  align-content: centerl;">
                 <p class="fsr" style="font-size:70%"">progress</p>
               </div>
               <style>
@@ -156,15 +165,20 @@ if(isset($_SESSION['email'])){
               border-right: 1px solid #F8F2DE;
               }
               </style>
-              <div class=" col-4" style="text-align: left">
-                  <p class="fsr  " style="font-size:70%; text-align: start !important">Ends in</p>
-                  <h2>39</h2><span class="fsr" style="font-size:140%">Days</span>
+              <div class=" col-4" style="text-align: center">
+                  <p class="fsr  " style="font-size:70%; text-align: center !important">Ends in</p>
+                  <h2 class="mb-0 p-0"><?php echo $row['days'];?></h2><span class="fsr" style="font-size:140%">Days</span>
               </div>
             </div>
           </li>
         </ul>
       </div>    
-    </div>    
+    </div>
+    <?php
+           }
+           }
+           else
+            { echo "No data found" ;} ?>    
     </div>   
   </main>
   <script>
