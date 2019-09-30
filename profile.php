@@ -4,10 +4,7 @@
 if (!isset($_SESSION['signed_in'])) {
 	header('location:index.php');
 }
- $sql = "SELECT projects.*, users.FIRST_NAME, users.LAST_NAME, DATEDIFF(projects.END_DATE, CURDATE()) AS days
-  FROM projects, users
-  WHERE projects.USER_ACCOUNT = users.ID";
-            $result = $db->query($sql);
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -116,24 +113,31 @@ if (!isset($_SESSION['signed_in'])) {
 
                   <hr />
                   <div class="row">
-                    
+                  <?php
+                  $sql = "SELECT projects.*, users.*, DATEDIFF(projects.END_DATE, CURDATE()) AS days
+                  FROM projects, users
+                  WHERE projects.USER_ACCOUNT = users.ID and users.EMAIL = '$email'";
+                  $result = $db->query($sql);
+                  //Fetch Data form database
+                  if($result->num_rows > 0){
+                  while($row = $result->fetch_assoc()){
+                  ?>
                     <div class="col">
-                      <div class="card" style="width: 18rem;">
-                        <img
-                          class="card-img-top"
-                          src="assets/images/handshake.jpg"
-                          alt="Card image cap"
-                        />
+                      <div class="card" style="width: 16rem;">
+                      <p><a href="aCampaign.php"><?php echo  "<img class='card-img-top' style='height:250px; width: 100%;' src='".$row['IMAGE']."' id='preview' alt='Card image cap'/>"; ?></a></p> 
                         <div class="card-body">
-                          <h5 class="card-title">other campangn title</h5>
-                          <p class="card-text">
-                            Some quick fundea text to build on the card title
-                            and make up the bulk of the card's content.
+                          <h5 class="card-title"><?php echo $row['PROJECT_NAME']; ?></h5>
+                          <p class="card-text" style="height: 150px">
+                          <?php echo $row['PROJECT_DESCRIPTION']; ?>
                           </p>
                           <a href="aCampaign.php" class="btn">read more</a>
                         </div>
                       </div>
                     </div>
+                  <?php }
+           }
+           else
+            { echo "No data found" ;} ?> 
                   </div>
                 </div>
                 <div
@@ -142,6 +146,9 @@ if (!isset($_SESSION['signed_in'])) {
                   role="tabpanel"
                   aria-labelledby="images-tab"
                 >
+                <?php   $query = " SELECT * FROM users where EMAIL = '$email' ";
+                $sql = mysqli_query($db , $query);
+                $row = mysqli_fetch_array ($sql, MYSQLI_ASSOC);?>
                 <form id="updateprofile" action="updateprofile.php" method="post" enctype="multipart/form-data">
                   <div class="form-group">
                     <div class="container">

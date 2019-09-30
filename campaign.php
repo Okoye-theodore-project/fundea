@@ -78,6 +78,7 @@ if (!isset($_SESSION['signed_in'])) {
                         <select class="browser-default custom-select mb-4" style="width: 200px" name="location"
                             id="location">
                             <option selected="selected">Select Location</option>
+                            <option value='Nigeria'>Nigeria</option>
                             <option value='Abia'>Abia</option>
                             <option value='Adamawa'>Adamawa</option>
                             <option value='AkwaIbom'>AkwaIbom</option>

@@ -1,6 +1,4 @@
-<?php require 'nav.php';
-session_start();
-require 'server.php';?>
+<?php require 'nav.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,13 +42,13 @@ require 'server.php';?>
 
                             <!-- Email -->
                             <div class="md-form">
-                                <input type="email" id="" class="form-control" name="email" id="email">
+                                <input type="email" id="email" class="form-control" name="email" id="email">
                                 <label for="">E-mail</label>
                             </div>
 
                             <!-- Password -->
                             <div class="md-form">
-                                <input type="password" id="" class="form-control fsr " name="password" id="password" placeholder="password" >
+                                <input type="password" id="password" class="form-control fsr " name="password" id="password" placeholder="password" >
                                 
                             </div>
 
@@ -68,11 +66,12 @@ require 'server.php';?>
                                     <!-- Forgot password -->
                                     <a href="#" data-target="#pwdModal" data-toggle="modal">Forgot password?</a>
                                 </div>
+                                <div class="message_box" style="margin:5px 0px;"></div>
                             </div>
 
                             <!-- Sign in button -->
                             <button class="btn btn-info btn-rounded btn-block my-4 waves-effect z-depth-0"
-                                style="border-radius:20px" type="submit" name="btn-submit">Sign in</button>
+                                style="border-radius:20px" type="submit" name="btn-submit" id="btn-submit">Sign in</button>
 
                             <!-- Register -->
                             <p>Not a member?
@@ -94,47 +93,41 @@ require 'server.php';?>
                                 <i class="fab fa-github"></i>
                             </a>
 
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+function submit(){
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
 
-                            <?php
-if ($_SERVER["REQUEST_METHOD"]=="POST") {
-
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-  $msg = array();
-
-  $email = mysqli_real_escape_string($db,$email);
-
-  $password = mysqli_real_escape_string($db,$password);
-
-  $sql = "SELECT * FROM users where EMAIL = '$email' and PASSWORD = '".md5($password)."'";
-
-  $result = mysqli_query($db , $sql);
-
-  $row = mysqli_fetch_array($result);
-
-  $count = mysqli_num_rows($result);
-
-  if ($count == 1) {
-
-    $_SESSION['signed_in'] = $email;
-    
-    ?>
-
-                            <script type='text/javascript'>
-                            
-                                window.location.href='profile.php';
-                            </script>
-
-                            <?php
-                            
-                        }
-  else{
-    echo  "<p><br>Invalid login details</P>";
-  }
+    if (email == "" || password == ""){
+        swal("error!", "Please input your details!", "error");
+    } else {
+    $.ajax
+    ({
+    type: "POST",
+    url: "log.php",
+    data: "email="+email+"&password="+password,
+    beforeSend: function() {
+    $('.message_box').html(
+    '<img src="assets/images/preloader.gif" width="50" height="50"/>'
+    );
+    }, 
+    success: function(data)
+    {
+    setTimeout(function() {
+    $('.message_box').html(data);
+    }, 2000);
+    }
+   });
+   }
 }
-
-?>
+    )};
+</script>
+    
+                            
 
 
                         </form>
@@ -202,8 +195,6 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     </div>
 
 
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
     </script>
@@ -216,4 +207,30 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
-</html>
+</html>$(document).ready(function() {
+function submit(url, type, callback){
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    if (email == "" || password == ""){
+        swal("error!", "Please input your details!", "error");
+    } else {
+    $.ajax
+    ({
+    type: "POST",
+    url: "log.php",
+    data: "email="+email+"&password="+password,
+    beforeSend: function() {
+    $('.message_box').html(
+    '<img src="assets/images/preloader.gif" width="50" height="
+    }, 
+    success: function(data)
+    {
+    setTimeout(function() {
+    $('.message_box').html(data);
+    }, 2000);
+    }
+   });
+   }
+}
+    )};

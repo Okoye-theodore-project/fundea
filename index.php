@@ -1,6 +1,8 @@
 <?php require 'server.php';
  require 'nav.php';   
-  
+ if (isset($_SESSION['signed_in'])) {
+  header("locaton:dashboard.php");
+};
   $sql = "SELECT projects.*, users.FIRST_NAME, users.LAST_NAME, DATEDIFF(projects.END_DATE, CURDATE()) AS days
   FROM projects, users
   WHERE projects.USER_ACCOUNT = users.ID";
@@ -132,7 +134,7 @@
         if($result->num_rows > 0){
          while($row = $result->fetch_assoc()){
          ?>
-      <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-3 mb-4" ">
+      <div class="col-12 col-md-6 col-lg-4 col-sm-12 col-xl-3 mb-4" >
         <div class=" card bc4" href="index.php">
       <p><a href="aCampaign.php"><?php echo  "<img class='card-img-top' style='height:300px; width: 100%;' src='".$row['IMAGE']."' id='preview' alt='Card image cap'/>"; ?></a></p> 
         <div class="card-body ">
@@ -150,14 +152,14 @@
           <li class="list-group-item bc5 fc4">
             <div class="row align-items-end ">
               <div style="text-align: center; " class="col-4  pb-2" id="divSize">
-                <span class="fsr" style="font-size:70%"">Amount</span>
+                <span class="fsr" style="font-size:70%">Amount</span>
                     <h2 class=" container mb-0 p-0">
                   &#8358;</h2><span>
                     <h4 style=" margin-bottom: 0rem !important; font-size: 1em !important;" id="amount"><?php echo $english_format_number = number_format($row['GOAL']);?></h4>
                   </span>
               </div>
               <div class="col-4 chart ;" data-percent="45" style="text-align:center;  align-content: centerl;">
-                <p class="fsr" style="font-size:70%"">progress</p>
+                <p class="fsr" style="font-size:70%">progress</p>
               </div>
               <style>
               .chart{
