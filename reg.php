@@ -52,7 +52,7 @@ if(isset($_POST['email'])){
             
             <!-- Sweet Alert -->
             <script type='text/javascript'>
-            swal("Oops!", "User already exists with that email!", "error");
+            swal("Oops!", "Something went wrong!", "error");
             </script>
 
             <?php

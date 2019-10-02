@@ -96,20 +96,45 @@
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js">
 </script>
-<script type="text/javascript">
+<script>
 $(document).ready(function() {
-function submit(){
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+   var delay = 2000;
+   $('#btn-submit').click(function(e){
+   e.preventDefault();
 
-    if (email == "" || password == ""){
-        swal("error!", "Please input your details!", "error");
-    } else {
+   let password = $("#password").val();
+   let email = $("#email").val();
+   if (
+     firstname == "" ||
+     lastname == "" ||
+     password1 == "" ||
+     password2 == "" ||
+     email == ""
+   ) {
+     swal("error!", "Empty fields are not allowed", "error");
+   }
+   else if (password1.length < 6 && validpass) {
+     $(".message_box")
+       .text(
+         "the password is too short or doesnt contain a capital or small letter or number"
+       )
+       .css("color", "red");
+   }
+    else if (!password1.match(password2)) {
+     $(".message_box")
+       .text("your password and confirm password do not match")
+       .css("color", "red");
+   } else if (!emailValid) {
+     $(".message_box")
+       .text("Your Email is not valid")
+       .css("color", "red");
+   }
+   else {
     $.ajax
     ({
     type: "POST",
-    url: "log.php",
-    data: "email="+email+"&password="+password,
+    url: "reg.php",
+    data: "firstname="+firstname+"&lastname="+lastname+"&email="+email+"&password1="+password1,
     beforeSend: function() {
     $('.message_box').html(
     '<img src="assets/images/preloader.gif" width="50" height="50"/>'
@@ -119,12 +144,12 @@ function submit(){
     {
     setTimeout(function() {
     $('.message_box').html(data);
-    }, 2000);
+    }, delay);
     }
    });
    }
-}
-    )};
+});
+});
 </script>
     
                             
@@ -207,30 +232,4 @@ function submit(){
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
-</html>$(document).ready(function() {
-function submit(url, type, callback){
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
-
-    if (email == "" || password == ""){
-        swal("error!", "Please input your details!", "error");
-    } else {
-    $.ajax
-    ({
-    type: "POST",
-    url: "log.php",
-    data: "email="+email+"&password="+password,
-    beforeSend: function() {
-    $('.message_box').html(
-    '<img src="assets/images/preloader.gif" width="50" height="
-    }, 
-    success: function(data)
-    {
-    setTimeout(function() {
-    $('.message_box').html(data);
-    }, 2000);
-    }
-   });
-   }
-}
-    )};
+</html>

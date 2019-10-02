@@ -44,6 +44,7 @@
                                     <div class="md-form">
                                         <input type="text" name="firstname" id="firstname" class="form-control">
                                         <label for="">First name</label>
+                                        <div class="error" id="firstnameErr"></div>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -51,6 +52,7 @@
                                     <div class="md-form">
                                         <input type="text" name="lastname" id="lastname" class="form-control">
                                         <label for="">Last name</label>
+                                        <div class="error" id="lastnameErr"></div>
                                     </div>
                                 </div>
                             </div>
@@ -59,22 +61,22 @@
                             <div class="md-form mt-0">
                                 <input type="email" name="email" id="email" class="form-control">
                                 <label for="">E-mail</label>
+                                <div class="error" id="emailErr"></div>
                             </div>
 
                             <!-- Password -->
-                            <div class="md-form">
-                                <input type="password" name="password1" id="password1" class="form-control"
-                                    aria-describedby="">
+                            <div class="md-form mt-0">
+                                <input type="password" name="password1" id="password1" class="form-control fsr ">
                                 <label for="">Password</label>
-                                <div class="message_box" style="margin:5px 0px;">
+                                <div class="error" id="passErr"></div>
                             </div>
 
                             <!-- Confirm Password -->
-                            <div class="md-form">
-                                <input type="password" name="password2" id="password2" class="form-control"
-                                    aria-describedby="">
+                            <div class="md-form mt-0">
+                                <input type="password" name="password2" id="password2" class="form-control fsr ">
                                 <label for="">Confirm Password</label>
-                                <small id="" class="form-text text-muted mb-4"></small>
+                                <div class="error" id="cpassErr"></div>
+                                <div class="message_box text-left" style="margin:5px 0px; position:relative;">
                             </div>
 
                             <!-- Newsletter -->
@@ -125,40 +127,106 @@ $(document).ready(function() {
    $('.btn-info').click(function(e){
    e.preventDefault();
 
-let password1 = $("#password1").val();
+   let password1 = $("#password1").val();
    let password2 = $("#password2").val();
    let email = $("#email").val();
    let firstname = $("#firstname").val();
    let lastname = $("#lastname").val();
-   let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-   let emailValid = emailRegex.test(email);
-   let passRegex = new RegExp("^(?=.[a-z])(?=.[A-Z])(?=.*[0-9])");
-   let validpass = passRegex.test(password1);
-   if (
-     firstname == "" ||
-     lastname == "" ||
-     password1 == "" ||
-     password2 == "" ||
-     email == ""
-   ) {
-     swal("error!", "Empty fields are not allowed", "error");
-   }
-   else if (password1.length < 6 && validpass) {
-     $(".message_box")
-       .text(
-         "the password is too short or doesnt contain a capital or small letter or number"
-       )
+
+   // Defining error variables with a default value
+   var firstnameErr = lastnameErr = emailErr = passErr = cpassErr = true;
+
+// firstname validation
+   if (firstname == "") {
+        $("#firstnameErr")
+       .text("Please enter your first name")
        .css("color", "red");
+       return false;
+   } else {
+       var regex = /^[a-zA-Z\s]+$/;
+       if(regex.test(firstname) === false) {
+           $("#firstnameErr")
+           .text("Please enter a valid name")
+           .css("color", "red");
+       return false;
+       } else {
+           $("#firstnameErr")
+           .text("");
+           firstnameErr = false;
+       }
    }
-    else if (!password1.match(password2)) {
-     $(".message_box")
+// lastname validation
+   if (lastname == "") {
+        $("#lastnameErr")
+       .text("Please enter your last name")
+       .css("color", "red");
+       return false;
+   } else {
+       var regex = /^[a-zA-Z\s]+$/;
+       if(regex.test(lastname) === false) {
+           $("#lastnameErr")
+           .text("Please enter a valid name")
+           .css("color", "red");
+       return false;
+       } else {
+           $("#lastnameErr")
+           .text("");
+           lastnameErr = false;
+       }
+   }
+// email validation
+   if (email == "") {
+        $("#emailErr")
+       .text("Please enter your email address")
+       .css("color", "red");
+       return false;
+   } else {
+       var regex = /^\S+@\S+\.\S+$/;
+       if(regex.test(email) === false) {
+           $("#emailErr")
+           .text("Please enter a valid email address")
+           .css("color", "red");
+       return false;
+       } else {
+           $("#emailErr")
+           .text("");
+           emailErr = false;
+       }
+   }
+// password validation
+   if (password1 == "") {
+       $("#passErr")
+       .text("Please enter your password")
+       .css("color", "red");
+       return false;
+   } else {
+       var regex = /(?=.*\d)(?=.*[a-z]).{6,}/;
+       if(regex.test(password1) === false) {
+       $("#passErr")
+       .text("the password is too short or doesnt contain a number")
+       .css("color", "red");
+       return false;
+       } else {
+        $("#passErr")
+        .text("");
+        passErr = false;
+       }
+   }
+// confirm password validation
+   if (password2 != password1) {
+       $("#cpassErr")
        .text("your password and confirm password do not match")
        .css("color", "red");
-   } else if (!emailValid) {
-     $(".message_box")
-       .text("Your Email is not valid")
-       .css("color", "red");
+   } else {
+        $("#cpassErr")
+        .text("");
+        cpassErr = false;
    }
+
+// Prevent the form from being submitted if there are any errors
+if((firstnameErr || lastnameErr || emailErr || passErr || cpassErr) == false) {
+       return false;
+    }
    else {
     $.ajax
     ({
@@ -168,7 +236,8 @@ let password1 = $("#password1").val();
     beforeSend: function() {
     $('.message_box').html(
     '<img src="assets/images/preloader.gif" width="50" height="50"/>'
-    );
+    ).animate({left: '400px'}, delay);
+
     }, 
     success: function(data)
     {
@@ -181,7 +250,6 @@ let password1 = $("#password1").val();
 });
 });
 </script>
-
 
                         </form>
                         <!-- Form -->
